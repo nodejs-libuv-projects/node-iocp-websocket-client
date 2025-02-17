@@ -58,13 +58,29 @@
             font-size: 14px;
             border: 1px solid #444;
         }
+
+        #server-down {
+            display: none;
+            background-color: #ff4444;
+            padding: 15px;
+            border-radius: 5px;
+            margin-top: 20px;
+            font-size: 16px;
+            text-align: center;
+        }
+
+        #server-down a {
+            color: #fff;
+            text-decoration: underline;
+            font-weight: bold;
+        }
     </style>
 </head>
 <body>
     <h1>WebSocket IOCP Tester</h1>
     <div class="container">
         <p>Click the buttons below to send WebSocket messages and see real-time responses.</p>
-        
+
         <div class="buttons">
             <button onclick="sendMessage('hash')">Test Hash (CPU)</button>
             <button onclick="sendMessage('file')">Test File Read</button>
@@ -74,8 +90,17 @@
 
         <h2>Response Log:</h2>
         <div id="log"></div>
+
+        <!-- Server Down Message -->
+        <div id="server-down">
+            ❌ WebSocket Server is Down!  
+            <br> Get the **server code** from GitHub and run it locally:  
+            <a href="https://github.com/nodejs-libuv-projects/node-iocp-websocket-server" target="_blank">📥 Download WebSocket Server</a>
+            <br>
+            Replace WebSocket URL with **`ws://localhost:3000`**
+        </div>
     </div>
 
-    <script src="./script.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
