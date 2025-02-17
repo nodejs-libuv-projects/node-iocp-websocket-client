@@ -1,31 +1,30 @@
-# 🚀 Node.js IOCP WebSocket Demo
+# 🌐 Node.js WebSocket Client (IOCP)
 
-This project demonstrates how **Node.js utilizes IOCP (I/O Completion Ports) on Windows** for handling **high-performance asynchronous operations**, including **WebSockets, CPU-intensive tasks, file I/O, and DNS lookups**.
+A **WebSocket client UI** to test real-time communication with the [Node.js IOCP WebSocket Server](https://github.com/nodejs-libuv-projects/node-iocp-websocket-server).  
 
-## 📌 Key Features
-✅ **Asynchronous HTTP Endpoints** (`/cpu`, `/file`, `/dns`)  
-✅ **WebSocket Server** (Handles multiple real-time connections)  
-✅ **Non-blocking I/O (libuv + IOCP)** for optimal performance  
-✅ **Scalable Node.js concurrency model on Windows**  
-
-## 🎯 Concepts Explored
-- How **Windows IOCP** manages concurrent async I/O.
-- How **Node.js (libuv)** schedules **CPU, File, and Network tasks** efficiently.
-- Difference between **IOCP (Windows) vs. epoll (Linux)**.
-
-## 🛠 Tech Stack
-- **Node.js**
-- **Express.js** (HTTP server)
-- **WebSockets (`ws` library)**
-- **File System (`fs`)**
-- **Crypto (`crypto.pbkdf2`)**
-- **DNS (`dns.lookup`)**
+This client provides a **visual interface** for sending WebSocket messages and displaying responses.
 
 ---
 
-## 🚀 Installation & Running the Project
+## 🔥 Features
+✅ **Connects to a WebSocket server dynamically**  
+✅ **Supports commands for hash, file reading, and DNS lookup**  
+✅ **Live response logging in the UI**  
+✅ **Mobile & desktop-friendly design**  
+✅ **Deployable on GitHub Pages & Replit**  
 
-### **1️⃣ Clone the Repository**
-```sh
+---
+
+## 📌 Technologies Used
+- **HTML, CSS, JavaScript**
+- **WebSockets (ws)**
+- **Replit & GitHub Pages compatible**
+
+---
+
+## 🚀 Getting Started
+
+### 1️⃣ **Clone the Repository**
+```bash
 git clone https://github.com/nodejs-libuv-projects/node-iocp-websocket-client.git
-cd node-iocp-websocket-demo
+cd node-iocp-websocket-client
