@@ -1,39 +1,38 @@
-const ws = new WebSocket("wss://95c281b9-3664-4a1d-b5f0-61f1350bad11-00-29gexjyimy68f.kirk.replit.dev/:3000");
+const WS_SERVER_URL = "wss://your-replit-project.replit.dev"; // Your WebSocket server URL
 
-ws.onopen = () => {
-  logMessage("✅ WebSocket Connected!");
-};
+function connectWebSocket() {
+    const ws = new WebSocket(WS_SERVER_URL);
 
-ws.onmessage = (event) => {
-  logMessage(`🔹 ${event.data}`);
-};
+    ws.onopen = () => {
+        logMessage("✅ Connected to WebSocket Server!");
+    };
 
-ws.onerror = (error) => {
-  logMessage(`❌ WebSocket Error: ${error}`);
-};
+    ws.onmessage = (event) => {
+        logMessage(`🔹 ${event.data}`);
+    };
 
-ws.onclose = () => {
-  logMessage("🔴 WebSocket Disconnected!");
-};
+    ws.onerror = (error) => {
+        console.error("❌ WebSocket Error:", error);
+        showServerDownMessage();
+    };
 
-function sendMessage(message) {
-  if (ws.readyState === WebSocket.OPEN) {
-    ws.send(message);
-    logMessage(`📤 Sent: ${message}`);
-  } else {
-    logMessage("⚠️ WebSocket Not Connected!");
-  }
-}
+    ws.onclose = () => {
+        logMessage("🔴 WebSocket Disconnected!");
+        showServerDownMessage();
+    };
 
-function sendAll() {
-  logMessage("🔄 Sending All Requests: [Hash, File, DNS]");
-  sendMessage("hash");
-  sendMessage("file");
-  sendMessage("dns");
+    return ws;
 }
 
 function logMessage(message) {
-  const logDiv = document.getElementById("log");
-  logDiv.innerHTML += `<p>${message}</p>`;
-  logDiv.scrollTop = logDiv.scrollHeight;
+    const logDiv = document.getElementById("log");
+    logDiv.innerHTML += `<p>${message}</p>`;
+    logDiv.scrollTop = logDiv.scrollHeight;
 }
+
+function showServerDownMessage() {
+    document.getElementById("server-down").style.display = "block";
+}
+
+// Attempt to connect to WebSocket
+let ws = connectWebSocket();
