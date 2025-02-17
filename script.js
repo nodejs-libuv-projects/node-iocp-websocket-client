@@ -1,0 +1,39 @@
+const ws = new WebSocket("ws://localhost:3000");
+
+ws.onopen = () => {
+  logMessage("✅ WebSocket Connected!");
+};
+
+ws.onmessage = (event) => {
+  logMessage(`🔹 ${event.data}`);
+};
+
+ws.onerror = (error) => {
+  logMessage(`❌ WebSocket Error: ${error}`);
+};
+
+ws.onclose = () => {
+  logMessage("🔴 WebSocket Disconnected!");
+};
+
+function sendMessage(message) {
+  if (ws.readyState === WebSocket.OPEN) {
+    ws.send(message);
+    logMessage(`📤 Sent: ${message}`);
+  } else {
+    logMessage("⚠️ WebSocket Not Connected!");
+  }
+}
+
+function sendAll() {
+  logMessage("🔄 Sending All Requests: [Hash, File, DNS]");
+  sendMessage("hash");
+  sendMessage("file");
+  sendMessage("dns");
+}
+
+function logMessage(message) {
+  const logDiv = document.getElementById("log");
+  logDiv.innerHTML += `<p>${message}</p>`;
+  logDiv.scrollTop = logDiv.scrollHeight;
+}
