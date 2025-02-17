@@ -1,5 +1,4 @@
-// const ws = new WebSocket("wss://your-replit-project.replit.dev");  // Your WebSocket server URL
-const ws = new WebSocket("wss://95c281b9-3664-4a1d-b5f0-61f1350bad11-00-29gexjyimy68f.kirk.replit.dev/:3000");  // Your WebSocket server URL
+const ws = new WebSocket("wss://your-replit-project.replit.dev");  // Your WebSocket server URL
 
 ws.onopen = () => {
   logMessage("✅ WebSocket Connected!");
