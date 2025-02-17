@@ -1,38 +1,46 @@
-const WS_SERVER_URL = "wss://your-replit-project.replit.dev"; // Your WebSocket server URL
+// const ws = new WebSocket("wss://your-replit-project.replit.dev");  // Your WebSocket server URL
+const ws = new WebSocket("wss://95c281b9-3664-4a1d-b5f0-61f1350bad11-00-29gexjyimy68f.kirk.replit.dev/:3000");  // Your WebSocket server URL
 
-function connectWebSocket() {
-    const ws = new WebSocket(WS_SERVER_URL);
+ws.onopen = () => {
+  logMessage("✅ WebSocket Connected!");
+};
 
-    ws.onopen = () => {
-        logMessage("✅ Connected to WebSocket Server!");
-    };
+ws.onmessage = (event) => {
+  logMessage(`🔹 ${event.data}`);
+};
 
-    ws.onmessage = (event) => {
-        logMessage(`🔹 ${event.data}`);
-    };
+ws.onerror = (error) => {
+  logMessage(`❌ WebSocket Error: ${error}`);
+  showServerDownMessage();
+};
 
-    ws.onerror = (error) => {
-        console.error("❌ WebSocket Error:", error);
-        showServerDownMessage();
-    };
+ws.onclose = () => {
+  logMessage("🔴 WebSocket Disconnected!");
+  showServerDownMessage();
+};
 
-    ws.onclose = () => {
-        logMessage("🔴 WebSocket Disconnected!");
-        showServerDownMessage();
-    };
+function sendMessage(message) {
+  if (ws.readyState === WebSocket.OPEN) {
+    ws.send(message);
+    logMessage(`📤 Sent: ${message}`);
+  } else {
+    logMessage("⚠️ WebSocket Not Connected!");
+  }
+}
 
-    return ws;
+function sendAll() {
+  sendMessage("hash");
+  sendMessage("file");
+  sendMessage("dns");
+  logMessage("🔄 Sent All Requests: [Hash, File, DNS]");
 }
 
 function logMessage(message) {
-    const logDiv = document.getElementById("log");
-    logDiv.innerHTML += `<p>${message}</p>`;
-    logDiv.scrollTop = logDiv.scrollHeight;
+  const logDiv = document.getElementById("log");
+  logDiv.innerHTML += `<p>${message}</p>`;
+  logDiv.scrollTop = logDiv.scrollHeight;
 }
 
 function showServerDownMessage() {
-    document.getElementById("server-down").style.display = "block";
+  document.getElementById("server-down").style.display = "block";
 }
-
-// Attempt to connect to WebSocket
-let ws = connectWebSocket();
