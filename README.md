@@ -27,5 +27,5 @@ This project demonstrates how **Node.js utilizes IOCP (I/O Completion Ports) on 
 
 ### **1️⃣ Clone the Repository**
 ```sh
-git clone https://github.com/nodejs-libuv-projects/node-iocp-websocket-demo.git
+git clone https://github.com/nodejs-libuv-projects/node-iocp-websocket-client.git
 cd node-iocp-websocket-demo
